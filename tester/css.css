@@ -1,0 +1,27 @@
+.colorOne {
+    color: #ff0;
+}
+.colorTwo {
+    color: rgb(0,0,255);
+}
+.colorThree {
+    width: 100px;
+    border: solid 1px rgba(0,0,0,0.5);
+}
+.colorFour {
+    width: 100px;
+    border: solid 1px hsl(286, 89%, 40%);
+    color: red;
+}
+.colorFive {
+    width: 100px;
+    border: solid 1px #0eb8ce;
+    border: solid 1px red;
+    color: #FFF;
+}
+.colorSix {
+    color: blue;
+    color: red;
+    color: yellow;
+    color: gray;
+}

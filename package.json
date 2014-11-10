@@ -1,0 +1,13 @@
+{
+    "name": "Neil.Brackets-css-color-preview",
+    "title": "Brackets-css-color-preview",
+    "description": "preview the colors within css file",
+    "keywords": ["css color", "css color preview", "color palette"],
+    "homepage": "https://github.com/cmgddd/Brackets-css-color-preview",
+    "version": "0.0.1",
+    "author": ["Neil.M.Chen", "cmgddd@163.com", "https://github.com/cmgddd"],
+    "license": "MIT",
+    "engines": {
+        "brackets": ">=0.44.0"
+    }
+}
