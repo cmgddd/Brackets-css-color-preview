@@ -156,7 +156,7 @@ define(function (require, exports, module) {
     AppInit.appReady(function() {
         var editor = EditorManager.getActiveEditor();
         // todo ?how to get the enabled editor instance
-        setTimeout(CssColorPreview.init,100);
+        setTimeout(CssColorPreview.init,300);
     });
 
 });
