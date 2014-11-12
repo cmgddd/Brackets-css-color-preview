@@ -25,3 +25,27 @@
     color: yellow;
     color: gray;
 }
+.c-white {
+    white-space: nowrap;
+    color: white;
+    border-color: #FFF;
+}
+.white {
+    white-space: nowrap;
+    color: white;
+}
+.red {
+    white-space: nowrap;
+}
+.red-color{
+    color: red;
+}
+.c-red {
+    color: red;
+}
+.c-blue {
+    color: blue;
+}
+.yellowgreen {
+
+}
