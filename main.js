@@ -47,8 +47,6 @@ define(function (require, exports, module) {
         gutterName = "CodeMirror-colorGutter",
         _enabled = true;
 
-        COLOR_REGEX = /#[a-f0-9]{6}\b|#[a-f0-9]{3}\b|\brgb\(\s*(?:[0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\b\s*,\s*(?:[0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\b\s*,\s*(?:[0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\b\s*\)|\brgb\(\s*(?:[0-9]{1,2}%|100%)\s*,\s*(?:[0-9]{1,2}%|100%)\s*,\s*(?:[0-9]{1,2}%|100%)\s*\)|\brgba\(\s*(?:[0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\b\s*,\s*(?:[0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\b\s*,\s*(?:[0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])\b\s*,\s*(?:1|1\.0|0|0?\.[0-9]{1,3})\s*\)|\brgba\(\s*(?:[0-9]{1,2}%|100%)\s*,\s*(?:[0-9]{1,2}%|100%)\s*,\s*(?:[0-9]{1,2}%|100%)\s*,\s*(?:1|1\.0|0|0?\.[0-9]{1,3})\s*\)|\bhsl\(\s*(?:[0-9]{1,3})\b\s*,\s*(?:[0-9]{1,2}|100)\b%\s*,\s*(?:[0-9]{1,2}|100)\b%\s*\)|\bhsla\(\s*(?:[0-9]{1,3})\b\s*,\s*(?:[0-9]{1,2}|100)\b%\s*,\s*(?:[0-9]{1,2}|100)\b%\s*,\s*(?:1|1\.0|0|0?\.[0-9]{1,3})\s*\)|[^.-]aliceblue[^-]|[^.-]antiquewhite[^-]|[^.-]aqua[^-]|[^.-]aquamarine[^-]|[^.-]azure[^-]|[^.-]beige[^-]|[^.-]bisque[^-]|[^.-]black[^-]|[^.-]blanchedalmond[^-]|[^.-]blue[^-]|[^.-]blueviolet[^-]|[^.-]brown[^-]|[^.-]burlywood[^-]|[^.-]cadetblue[^-]|[^.-]chartreuse[^-]|[^.-]chocolate[^-]|[^.-]coral[^-]|[^.-]cornflowerblue[^-]|[^.-]cornsilk[^-]|[^.-]crimson[^-]|[^.-]cyan[^-]|[^.-]darkblue[^-]|[^.-]darkcyan[^-]|[^.-]darkgoldenrod[^-]|[^.-]darkgray[^-]|[^.-]darkgreen[^-]|[^.-]darkgrey[^-]|[^.-]darkkhaki[^-]|[^.-]darkmagenta[^-]|[^.-]darkolivegreen[^-]|[^.-]darkorange[^-]|[^.-]darkorchid[^-]|[^.-]darkred[^-]|[^.-]darksalmon[^-]|[^.-]darkseagreen[^-]|[^.-]darkslateblue[^-]|[^.-]darkslategray[^-]|[^.-]darkslategrey[^-]|[^.-]darkturquoise[^-]|[^.-]darkviolet[^-]|[^.-]deeppink[^-]|[^.-]deepskyblue[^-]|[^.-]dimgray[^-]|[^.-]dimgrey[^-]|[^.-]dodgerblue[^-]|[^.-]firebrick[^-]|[^.-]floralwhite[^-]|[^.-]forestgreen[^-]|[^.-]fuchsia[^-]|[^.-]gainsboro[^-]|[^.-]ghostwhite[^-]|[^.-]gold[^-]|[^.-]goldenrod[^-]|[^.-]gray[^-]|[^.-]green[^-]|[^.-]greenyellow[^-]|[^.-]grey[^-]|[^.-]honeydew[^-]|[^.-]hotpink[^-]|[^.-]indianred[^-]|[^.-]indigo[^-]|[^.-]ivory[^-]|[^.-]khaki[^-]|[^.-]lavender[^-]|[^.-]lavenderblush[^-]|[^.-]lawngreen[^-]|[^.-]lemonchiffon[^-]|[^.-]lightblue[^-]|[^.-]lightcoral[^-]|[^.-]lightcyan[^-]|[^.-]lightgoldenrodyellow[^-]|[^.-]lightgray[^-]|[^.-]lightgreen[^-]|[^.-]lightgrey[^-]|[^.-]lightpink[^-]|[^.-]lightsalmon[^-]|[^.-]lightseagreen[^-]|[^.-]lightskyblue[^-]|[^.-]lightslategray[^-]|[^.-]lightslategrey[^-]|[^.-]lightsteelblue[^-]|[^.-]lightyellow[^-]|[^.-]lime[^-]|[^.-]limegreen[^-]|[^.-]linen[^-]|[^.-]magenta[^-]|[^.-]maroon[^-]|[^.-]mediumaquamarine[^-]|[^.-]mediumblue[^-]|[^.-]mediumorchid[^-]|[^.-]mediumpurple[^-]|[^.-]mediumseagreen[^-]|[^.-]mediumslateblue[^-]|[^.-]mediumspringgreen[^-]|[^.-]mediumturquoise[^-]|[^.-]mediumvioletred[^-]|[^.-]midnightblue[^-]|[^.-]mintcream[^-]|[^.-]mistyrose[^-]|[^.-]moccasin[^-]|[^.-]navajowhite[^-]|[^.-]navy[^-]|[^.-]oldlace[^-]|[^.-]olive[^-]|[^.-]olivedrab[^-]|[^.-]orange[^-]|[^.-]orangered[^-]|[^.-]orchid[^-]|[^.-]palegoldenrod[^-]|[^.-]palegreen[^-]|[^.-]paleturquoise[^-]|[^.-]palevioletred[^-]|[^.-]papayawhip[^-]|[^.-]peachpuff[^-]|[^.-]peru[^-]|[^.-]pink[^-]|[^.-]plum[^-]|[^.-]powderblue[^-]|[^.-]purple[^-]|[^\-.]red[^-]|[^.-]rosybrown[^-]|[^.-]royalblue[^-]|[^.-]saddlebrown[^-]|[^.-]salmon[^-]|[^.-]sandybrown[^-]|[^.-]seagreen[^-]|[^.-]seashell[^-]|[^.-]sienna[^-]|[^.-]silver[^-]|[^.-]skyblue[^-]|[^.-]slateblue[^-]|[^.-]slategray[^-]|[^.-]slategrey[^-]|[^.-]snow[^-]|[^.-]springgreen[^-]|[^.-]steelblue[^-]|[^.-]tan[^-]|[^.-]teal[^-]|[^.-]thistle[^-]|[^.-]tomato[^-]|[^.-]turquoise[^-]|[^.-]violet[^-]|[^.-]wheat[^-]|[^.-]white[^-]|[^.-]whitesmoke[^-]|[^.-]yellow[^-]|[^.-]yellowgreen[^-]/gi;
-
     ExtensionUtils.loadStyleSheet(module, "main.css");
 
     var CssColorPreview = {
@@ -61,6 +59,18 @@ define(function (require, exports, module) {
             _prefs.set("enabled", _enabled);
             _prefs.save();
             CommandManager.get(COMMAND_NAME).setChecked(_enabled);
+            var editor = CssColorPreview.getEditor();
+            var cm = editor._codeMirror;
+            if(_enabled && editor) {
+                if(editor) {
+                    CssColorPreview.showColorMarks();
+                    CssColorPreview.regisiterHandlers(cm);
+                }
+            } else if(editor){
+                cm.clearGutter(gutterName); // clear color markers
+                CssColorPreview.removeHandlers(cm);
+            }
+
         },
 
         // Get editor
@@ -81,16 +91,26 @@ define(function (require, exports, module) {
 
                 // match colors and push into an array
                 for(var i = 0; i < nLen; i++) {
-                    var tempItem = cm.getLine(i).match(COLOR_REGEX);
-                    // todo current support one color to show only
-                    if(tempItem){
-                        tempItem = tempItem[0].replace(';','');
-                        tempItem = {
-                           line_number : i,
-                           color_value : tempItem
+                    var lineText = cm.getLine(i);
+
+                    if( (lineText.indexOf('/*')!=-1) && (lineText.indexOf('*/')!=-1) ){
+                        continue;
+                    } else {
+                        var regx = /:.*?;/g;
+                        lineText = lineText.match(regx);
+                        if(lineText){
+                            var tempItem = lineText[0].match(COLOR_REGEX);
+                            // todo current support one color to show only
+                            if(tempItem){
+                                var tempColor = tempItem[0];
+                                aColors.push({
+                                   line_number : i,
+                                   color_value : tempColor
+                                });
+                            }
                         }
-                        aColors.push(tempItem);
                     }
+
                 }
                 CssColorPreview.showGutters(editor, aColors);
             }
@@ -118,16 +138,25 @@ define(function (require, exports, module) {
 
                 if(!_prefs.get("enabled")){return;}
                 CssColorPreview.showColorMarks();
-                // when activeEditorChange
-                $(DocumentManager).on("currentDocumentChange", CssColorPreview.onChanged);
-                cm.on("change", CssColorPreview.onChanged);
+                CssColorPreview.regisiterHandlers(cm);
             }
+        },
+
+        regisiterHandlers: function (cm) {
+            // when activeEditorChange
+            $(DocumentManager).on("currentDocumentChange", CssColorPreview.onChanged);
+            cm.on("change", CssColorPreview.onChanged);
+        },
+        removeHandlers: function (cm) {
+            // when activeEditorChange
+            $(DocumentManager).off("currentDocumentChange", CssColorPreview.onChanged);
+            cm.off("change", CssColorPreview.onChanged);
         },
 
         initGutter: function(editor) {
 
             var cm = editor._codeMirror;
-            var gutters = cm.getOption("gutters").slice(0);
+            var gutters = cm.getOption("gutters");
             var str = gutters.join('');
             if (str.indexOf(gutterName) === -1) {
                 gutters.unshift(gutterName);
@@ -141,7 +170,6 @@ define(function (require, exports, module) {
                 var cm = editor._codeMirror;
                 cm.clearGutter(gutterName); // clear color markers
                 cm.colorGutters = _.sortBy(_results, "line_number");
-                cm.clearGutter(gutterName);
                 cm.colorGutters.forEach(function (obj) {
                     var $marker = $("<i>")
                                     .addClass("ico-cssColorPreview")
@@ -156,7 +184,7 @@ define(function (require, exports, module) {
     AppInit.appReady(function() {
         var editor = EditorManager.getActiveEditor();
         // todo ?how to get the enabled editor instance
-        setTimeout(CssColorPreview.init,300);
+        setTimeout(CssColorPreview.init,1000);
     });
 
 });
