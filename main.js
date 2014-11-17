@@ -93,7 +93,7 @@ define(function (require, exports, module) {
                 for(var i = 0; i < nLen; i++) {
                     var lineText = cm.getLine(i);
 
-                    if( (lineText.indexOf('/*')!=-1) && (lineText.indexOf('*/')!=-1) ){
+                    if( (lineText.indexOf('/*')!=-1) || (lineText.indexOf('*/')!=-1) ){
                         continue;
                     } else {
                         var regx = /:.*?;/g;
