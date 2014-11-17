@@ -127,7 +127,7 @@ define(function (require, exports, module) {
         initGutter: function(editor) {
 
             var cm = editor._codeMirror;
-            var gutters = cm.getOption("gutters");
+            var gutters = cm.getOption("gutters").slice(0);
             var str = gutters.join('');
             if (str.indexOf(gutterName) === -1) {
                 gutters.unshift(gutterName);
