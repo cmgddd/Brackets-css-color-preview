@@ -59,18 +59,17 @@ define(function (require, exports, module) {
             _prefs.set("enabled", _enabled);
             _prefs.save();
             CommandManager.get(COMMAND_NAME).setChecked(_enabled);
-            var editor = CssColorPreview.getEditor();
-            var cm = editor._codeMirror;
-            if(_enabled && editor) {
+            if(_enabled){
+                CssColorPreview.showColorMarks();
+                CssColorPreview.regisiterHandlers();
+            } else {
+                var editor = CssColorPreview.getEditor();
                 if(editor) {
-                    CssColorPreview.showColorMarks();
-                    CssColorPreview.regisiterHandlers(cm);
+                    var cm = editor._codeMirror;
+                    cm.clearGutter(gutterName); // clear color markers
                 }
-            } else if(editor){
-                cm.clearGutter(gutterName); // clear color markers
-                CssColorPreview.removeHandlers(cm);
+                CssColorPreview.removeHandlers();
             }
-
         },
 
         // Get editor
@@ -121,36 +120,39 @@ define(function (require, exports, module) {
         },
 
         init: function() {
-            var editor = CssColorPreview.getEditor();
-            if(editor) {
-                var cm = editor._codeMirror;
-                if (_prefs.get("enabled")==="undefined") {
-                    _prefs.definePreference("enabled", "boolean", _enabled);
-                } else {
-                    _enabled = _prefs.get("enabled");
-                }
-                CommandManager.register("Enable Css Color Preview", COMMAND_NAME, CssColorPreview.toggleEnable);
-                // Then create a menu item bound to the command
-                Menus.getMenu(Menus.AppMenuBar.VIEW_MENU).addMenuItem(COMMAND_NAME);
-
-                // Set the starting state for the menu item.
-                CommandManager.get(COMMAND_NAME).setChecked(_enabled);
-
-                if(!_prefs.get("enabled")){return;}
-                CssColorPreview.showColorMarks();
-                CssColorPreview.regisiterHandlers(cm);
+            if (_prefs.get("enabled")==="undefined") {
+                _prefs.definePreference("enabled", "boolean", _enabled);
+            } else {
+                _enabled = _prefs.get("enabled");
             }
-        },
+            CommandManager.register("Enable Css Color Preview", COMMAND_NAME, CssColorPreview.toggleEnable);
+            // Then create a menu item bound to the command
+            Menus.getMenu(Menus.AppMenuBar.VIEW_MENU).addMenuItem(COMMAND_NAME);
 
-        regisiterHandlers: function (cm) {
+            // Set the starting state for the menu item.
+            CommandManager.get(COMMAND_NAME).setChecked(_enabled);
+
+            if(!_enabled){return;}
+            CssColorPreview.showColorMarks();
+            CssColorPreview.regisiterHandlers();
+        },
+        regisiterHandlers: function () {
+            var editor = CssColorPreview.getEditor();
             // when activeEditorChange
             $(DocumentManager).on("currentDocumentChange", CssColorPreview.onChanged);
-            cm.on("change", CssColorPreview.onChanged);
+            if(editor){
+                var cm = editor._codeMirror;
+                cm.on("change", CssColorPreview.onChanged);
+            }
         },
-        removeHandlers: function (cm) {
+        removeHandlers: function () {
+            var editor = CssColorPreview.getEditor();
+            if(editor){
+                var cm = editor._codeMirror;
+                cm.off("change", CssColorPreview.onChanged);
+            }
             // when activeEditorChange
             $(DocumentManager).off("currentDocumentChange", CssColorPreview.onChanged);
-            cm.off("change", CssColorPreview.onChanged);
         },
 
         initGutter: function(editor) {
@@ -182,8 +184,6 @@ define(function (require, exports, module) {
 
     // init after appReady
     AppInit.appReady(function() {
-        var editor = EditorManager.getActiveEditor();
-        // todo ?how to get the enabled editor instance
         setTimeout(CssColorPreview.init,1000);
     });
 
