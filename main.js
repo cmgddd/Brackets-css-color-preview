@@ -34,7 +34,6 @@ define(function (require, exports, module) {
         _ = brackets.getModule("thirdparty/lodash"),
         CommandManager = brackets.getModule("command/CommandManager"),
         EditorManager   = brackets.getModule('editor/EditorManager'),
-        DocumentManager   = brackets.getModule('document/DocumentManager'),
         ExtensionUtils          = brackets.getModule("utils/ExtensionUtils"),
         ColorUtils   = brackets.getModule('utils/ColorUtils'),
         Menus = brackets.getModule("command/Menus"),
@@ -139,7 +138,7 @@ define(function (require, exports, module) {
         regisiterHandlers: function () {
             var editor = CssColorPreview.getEditor();
             // when activeEditorChange
-            $(DocumentManager).on("currentDocumentChange", CssColorPreview.onChanged);
+            $(EditorManager).on("activeEditorChange", CssColorPreview.onChanged);
             if(editor){
                 var cm = editor._codeMirror;
                 cm.on("change", CssColorPreview.onChanged);
@@ -152,7 +151,7 @@ define(function (require, exports, module) {
                 cm.off("change", CssColorPreview.onChanged);
             }
             // when activeEditorChange
-            $(DocumentManager).off("currentDocumentChange", CssColorPreview.onChanged);
+            $(EditorManager).off("activeEditorChange", CssColorPreview.onChanged);
         },
 
         initGutter: function(editor) {
