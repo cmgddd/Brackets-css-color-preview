@@ -9,5 +9,8 @@
     "license": "MIT",
     "engines": {
         "brackets": ">=0.44.0"
-    }
+    },
+	"i18n": [
+        "en", "es"
+    ]   
 }
