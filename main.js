@@ -44,7 +44,8 @@ define(function (require, exports, module) {
         COLOR_REGEX = ColorUtils.COLOR_REGEX,    // used to match color
         _prefs = PreferencesManager.getExtensionPrefs("brackets-css-color-preview"),
         gutterName = "CodeMirror-colorGutter",
-        _enabled = true;
+        _enabled = true,
+        Strings = require("strings");
 
     ExtensionUtils.loadStyleSheet(module, "main.css");
 
@@ -124,7 +125,7 @@ define(function (require, exports, module) {
             } else {
                 _enabled = _prefs.get("enabled");
             }
-            CommandManager.register("Enable Css Color Preview", COMMAND_NAME, CssColorPreview.toggleEnable);
+            CommandManager.register(Strings.MENU_CSS_COLOR_PREVIEW, COMMAND_NAME, CssColorPreview.toggleEnable);
             // Then create a menu item bound to the command
             Menus.getMenu(Menus.AppMenuBar.VIEW_MENU).addMenuItem(COMMAND_NAME);
 
