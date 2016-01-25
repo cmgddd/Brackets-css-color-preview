@@ -138,7 +138,7 @@ define(function (require, exports, module) {
         regisiterHandlers: function () {
             var editor = CssColorPreview.getEditor();
             // when activeEditorChange
-            $(EditorManager).on("activeEditorChange", CssColorPreview.onChanged);
+            EditorManager.on("activeEditorChange", CssColorPreview.onChanged);
             if(editor){
                 var cm = editor._codeMirror;
                 cm.on("change", CssColorPreview.onChanged);
@@ -151,7 +151,7 @@ define(function (require, exports, module) {
                 cm.off("change", CssColorPreview.onChanged);
             }
             // when activeEditorChange
-            $(EditorManager).off("activeEditorChange", CssColorPreview.onChanged);
+            EditorManager.off("activeEditorChange", CssColorPreview.onChanged);
         },
 
         initGutter: function(editor) {
