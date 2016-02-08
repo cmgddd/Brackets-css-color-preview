@@ -1,10 +1,19 @@
+.CodeMirror-gutter-elt {
+	position: absolute;
+	cursor: default;
+	z-index: -1
+}
+.CodeMirror-linenumber.CodeMirror-gutter-elt {
+	z-index: 1
+}
 .ico-cssColorPreview {
-    border: solid 1px rgba(0,0,0,.2);
-    display: inline-block;
-    height: 7px;
-    width: 7px;
-    margin-left: 3px;
-    vertical-align: middle;
-    position: relative;
-    z-index: 99999;
+	border: 0;
+	display: inline-block;
+	height: 16px;
+	width: 55px;
+	margin-left: 0;
+	vertical-align: middle;
+	position: relative;
+	z-index: -1;
+	top: -2px
 }
